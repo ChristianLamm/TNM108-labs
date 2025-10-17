@@ -13,18 +13,20 @@
 
 3. **Can you use KNN to classify non-linearly separable data?**
    A: Short answer YES.
-   KNN makes no assumptions about the shape of the decision boundary, it is non-parametric. It can therefore model non-linear relationships simply by relying on local neighborhood similarity.
+   KNN doesn’t assume that data is straight-line separable. It simply looks at the nearby data points, so it can handle curved or complex boundaries very well.
 
 4. **Is KNN sensible to the number of features in the dataset?**
    A: Short answer YES.
-   KNN suffers from the "curse of dimensionality", which means: as the number of features grows, distances between points become less meaningful, requiring exponentially more data and leading to overfitting.
-   To mitigate this:
-   -- Use feature selection or dimensionality reduction (PCA)
-   -- Normalize features to comparable scales
+   If there are too many features (columns), KNN can struggle — this is called the curse of dimensionality.
+   When that happens, distances between points become less meaningful, and you might need much more data.
+   To fix this, you can:
+   -- Use fewer features, or
+   -- Reduce dimensions using PCA, and
+   -- Normalize the data so all features are on the same scale.
 
 5. **Can you use KNN for a regression problem?**
    A: Short answer YES.
-   Although often used for classification, KNN can perform regression by averaging (or weighting) the target values of the k nearest neighbors instead of voting on classes.
+   It is often used for classification, but KNN can perform regression. In regression, it takes the average (or weighted average) of the values from the k nearest neighbors to make a prediction.
 
 6. **What are the Pros and Cons of KNN?**
    PROS:
@@ -37,6 +39,6 @@
    CONS:
 
    - Prediction phase is slow and memoryintensive (must compare to all training points)
-   - Requires scaling/normalization of features (espacially with Euclidean distance
-   - Not suitable for high-dimensional data (curse of dimensionality)
-   - Sensitive to irrelevant or noisy features
+   - Requires scaling/normalization of features (espacially with Euclidean distance)
+   - Needs a lot of memory to store all data.
+   - Doesn’t work well with too many features or noisy data (cures of dimensionality)
