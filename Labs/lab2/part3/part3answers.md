@@ -14,9 +14,9 @@
    A:
    Pros:
    memmory efficieint (few support vectors),
-   Fast pt rediction
-   Workos w ell with high-dimensional data
-   Versartilie due to kernel methods
-   nsons::
-   ifmputaficultn payrameter tuning
-   DiffiNot easily interpreta(e.g C)ble eas
+   Fast point rediction
+   Works well with high-dimensional data
+   Versatille due to kernel methods
+   cons:
+   difficult parameter tuning
+   Parameter not easily interpreted(e.g C)
