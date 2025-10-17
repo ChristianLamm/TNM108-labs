@@ -20,3 +20,4 @@
    cons:
    difficult parameter tuning
    Parameter not easily interpreted(e.g C)
+   Can be slow to train on large datasets
