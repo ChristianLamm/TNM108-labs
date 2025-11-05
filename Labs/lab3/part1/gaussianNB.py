@@ -22,7 +22,8 @@ class GaussNB:
         """
         separated = [[x for x, t in zip(data, target) if t == c] for c in self.target_values]
         groups=[np.array(separated[0]),np.array(separated[1]),np.array(separated[2])]
-        return np.array(groups)
+        #return np.array(groups) ORIGINAL
+        return(groups)
 
     def summarize(self,data):
         """
@@ -44,7 +45,8 @@ class GaussNB:
             2. yield summary: list of {'mean': 0.0,'stdev': 0.0} for every feature in data
         """
         groups = self.group_by_class(data, target)
-        for index in range(groups.shape[0]):
+        # for index in range(groups.shape[0]): ORIGINAL
+        for index in range(len(groups)):
             group=groups[index]
             self.summaries[self.target_values[index]] = {
                 'prior_prob': len(group)/len(data),
@@ -164,7 +166,8 @@ class GaussNB:
         for x, y in zip(ground_true, predicted):
             if x==y:
                 correct += 1
-        return correct / ground_true.shape[0]
+        # return correct / ground_true.shape[0] ORIGINAL
+        return correct / len(ground_true)
 
 def main():
     nb = GaussNB()
