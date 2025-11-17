@@ -10,6 +10,11 @@ from sklearn.linear_model import LinearRegression, RidgeCV
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.utils.validation import check_random_state
 
+# added models
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+
+
 # Load the faces datasets
 data, targets = fetch_olivetti_faces(return_X_y=True)
 
@@ -38,6 +43,15 @@ ESTIMATORS = {
     "K-nn": KNeighborsRegressor(),
     "Linear regression": LinearRegression(),
     "Ridge": RidgeCV(),
+
+    # --- Added models ---
+    "DT depth=10, feat=50": DecisionTreeRegressor(max_depth=10, max_features=50, random_state=0),
+    "DT depth=20, feat=50": DecisionTreeRegressor(max_depth=20, max_features=50, random_state=0),
+    "DT depth=20, feat=25": DecisionTreeRegressor(max_depth=20, max_features=25, random_state=0),
+
+    "RF depth=10, feat=50": RandomForestRegressor(n_estimators=10, max_depth=10, max_features=50, random_state=0),
+    "RF depth=20, feat=50": RandomForestRegressor(n_estimators=10, max_depth=20, max_features=50, random_state=0),
+    "RF depth=20, feat=25": RandomForestRegressor(n_estimators=10, max_depth=20, max_features=25, random_state=0),
 }
 
 y_test_predict = dict()

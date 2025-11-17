@@ -14,62 +14,71 @@ from sklearn.feature_selection import RFE
 #from sklearn.datasets import load_boston
 #boston = load_boston()
 
-
 import pandas as pd
-boston = pd.read_csv("Labs/lab3/part3/Boston.csv")
+from pathlib import Path
+# Load Boston.csv relative to this script's location
+boston_path = Path(__file__).parent / "Boston.csv"
+boston = pd.read_csv(boston_path)
 X = boston.drop("medv", axis=1).values  # Use all columns except target
 Y = boston["medv"].values  # Use target column
+
+# TASK 1: Shuffle rows once so folds are randomized while keeping X/Y aligned
+rng = np.random.default_rng(seed=42)
+indices = rng.permutation(len(Y))
+X = X[indices]
+Y = Y[indices]
 cv = 10
+
 print('\nlinear regression')
 lin = LinearRegression()
 scores = cross_val_score(lin, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(lin, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
 print('\nridge regression')
 ridge = Ridge(alpha=1.0)
 scores = cross_val_score(ridge, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(ridge, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
 print('\nlasso regression')
-
-
 lasso = Lasso(alpha=0.1)
 scores = cross_val_score(lasso, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(lasso, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
-print('\ndecision tree regression')
 
+print('\ndecision tree regression')
 tree = DecisionTreeRegressor(random_state=0)
 scores = cross_val_score(tree, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(tree, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
-print('\nrandom forest regression')
 
+print('\nrandom forest regression')
 forest = RandomForestRegressor(n_estimators=50, max_depth=None, min_samples_split=2, random_state=0)
 scores = cross_val_score(forest, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(forest, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
-print('\nlinear support vector machine')
 
+print('\nlinear support vector machine')
 svm_lin = svm.SVR(epsilon=0.2,kernel='linear',C=1)
 scores = cross_val_score(svm_lin, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(svm_lin, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
-print('\nsupport vector machine rbf')
 
+print('\nsupport vector machine rbf')
 clf = svm.SVR(epsilon=0.2,kernel='rbf',C=1.)
 scores = cross_val_score(clf, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(clf, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
-print('\nknn')
 
+print('\nknn')
 knn = KNeighborsRegressor()
 scores = cross_val_score(knn, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
@@ -77,6 +86,7 @@ predicted = cross_val_predict(knn, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
 
 
+""" 
 best_features=4
 rfe_lin = RFE(estimator=lin, n_features_to_select=best_features).fit(X,Y)
 supported_features=rfe_lin.get_support(indices=True)
@@ -85,14 +95,10 @@ for i in range(0, 4):
 	print(i+1,boston.columns[z])
  
  
- 
 from sklearn.feature_selection import RFE
 best_features=4
 print('feature selection on linear regression')
 
-from sklearn.feature_selection import RFE
-best_features=4
-print('feature selection on linear regression')
 rfe_lin = RFE(estimator=lin, n_features_to_select=best_features).fit(X,Y)
 mask = np.array(rfe_lin.support_)
 scores = cross_val_score(lin, X[:,mask], Y, cv=cv)
@@ -130,8 +136,6 @@ mask = np.array(rfe_forest.support_)
 scores = cross_val_score(forest, X[:,mask], Y, cv=cv)
 print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(forest, X[:,mask],Y, cv=cv)
-
-
 
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
 print('feature selection on linear support vector machine')
@@ -195,3 +199,5 @@ scores = cross_val_score(svm_lin, X[:,mask], Y, cv=cv)
 print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(svm_lin, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
+"""
