@@ -38,7 +38,8 @@ y_test = test[:, n_pixels // 2 :]
 # Fit estimators
 ESTIMATORS = {
     "Extra trees": ExtraTreesRegressor(
-        n_estimators=10, max_features=32, random_state=0
+        # n_estimators=10, max_features=32, random_state=0
+        n_estimators=10, max_features=50, random_state=0
     ),
     "K-nn": KNeighborsRegressor(),
     "Linear regression": LinearRegression(),
