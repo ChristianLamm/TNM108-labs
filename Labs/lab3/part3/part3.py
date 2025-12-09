@@ -86,7 +86,7 @@ predicted = cross_val_predict(knn, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
 
 
-""" 
+
 best_features=4
 rfe_lin = RFE(estimator=lin, n_features_to_select=best_features).fit(X,Y)
 supported_features=rfe_lin.get_support(indices=True)
@@ -199,5 +199,3 @@ scores = cross_val_score(svm_lin, X[:,mask], Y, cv=cv)
 print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(svm_lin, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
-
-"""

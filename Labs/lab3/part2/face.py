@@ -46,6 +46,7 @@ ESTIMATORS = {
     "Ridge": RidgeCV(),
 
     # --- Added models ---
+    
     "DT depth=10, feat=50": DecisionTreeRegressor(max_depth=10, max_features=50, random_state=0),
     "DT depth=20, feat=50": DecisionTreeRegressor(max_depth=20, max_features=50, random_state=0),
     "DT depth=20, feat=25": DecisionTreeRegressor(max_depth=20, max_features=25, random_state=0),
@@ -53,7 +54,8 @@ ESTIMATORS = {
     "RF depth=10, feat=50": RandomForestRegressor(n_estimators=10, max_depth=10, max_features=50, random_state=0),
     "RF depth=20, feat=50": RandomForestRegressor(n_estimators=10, max_depth=20, max_features=50, random_state=0),
     "RF depth=20, feat=25": RandomForestRegressor(n_estimators=10, max_depth=20, max_features=25, random_state=0),
-}
+    
+}   
 
 y_test_predict = dict()
 for name, estimator in ESTIMATORS.items():
