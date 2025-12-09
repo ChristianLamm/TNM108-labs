@@ -1,13 +1,12 @@
 import sklearn
+import nltk
+
 from sklearn.datasets import load_files
 from sklearn.feature_extraction.text import CountVectorizer
-import nltk
 from sklearn.feature_extraction.text import TfidfTransformer #idk?
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 from sklearn.naive_bayes import MultinomialNB
-
-
 
 
 moviedir = 'Labs/lab4/part2/movie_reviews/'

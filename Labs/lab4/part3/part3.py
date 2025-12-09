@@ -2,7 +2,7 @@ from summa.summarizer import summarize
 from summa import keywords
 
 # Read text from file
-with open("Labs/lab4/part3/text.txt", "r", encoding="utf-8") as file:
+with open("part3/text.txt", "r", encoding="utf-8") as file:
     text = file.read()
 
 # Summarize - define length as a proportion of the text
