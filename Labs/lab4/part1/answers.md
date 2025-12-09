@@ -10,4 +10,8 @@ How similiar two documents are, is decided by the cosine simularity(measures the
         this way we can identify the similiarity between 2 documents with cosiderable difference in length as the method looks att difference in angle-> orientation
 
     – classify text:
+<<<<<<< HEAD
         the vectors from a collection fo documents are fed into a machine learning algorithm to train a predictive model using the known category labels. To classify new, unseen text, the new documents are transformed into TF-IDF vectors using the same transformer (vocabulary and IDF weights) derived from the training set and use the trained model to predict their categories. the document reccomends Multinomial Naïve Bayes
+=======
+        the vectors from a collection fo documents are fed into a machine learning algorithm to train a predictive model using the known category labels. To classify new, unseen text, the new documents are transformed into TF-IDF vectors using the same transformer (vocabulary and IDF weights) derived from the training set and use the trained model to predict their categories. the document reccomends Multinomial Naïve Bayes. then apply the model on new vectors to verify their categories
+>>>>>>> 9f13983b6e1272c3e2e09f6316c23a4fa4ff62af
